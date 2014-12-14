@@ -3,6 +3,7 @@ ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 AM_CONFIG_HEADER = ../config.h
 
 EXTRA_DIST = specs.xml
+dist_bin_SCRIPTS = volnoti
 
 AM_CPPFLAGS = \
               @DBUS_CFLAGS@ \
@@ -14,11 +15,11 @@ AM_CPPFLAGS = \
 
 COMMON = common.c common.h gopt.c gopt.h
 
-bin_PROGRAMS = volnoti volnoti-show
+bin_PROGRAMS = volnotid volnoti-show
 
-volnoti_SOURCES = daemon.c notification.c notification.h \
+volnotid_SOURCES = daemon.c notification.c notification.h \
                   value-daemon-stub.h $(COMMON)
-volnoti_LDADD = \
+volnotid_LDADD = \
                 @DBUS_LIBS@ \
                 @DBUS_GLIB_LIBS@ \
                 @GTK_LIBS@ \
