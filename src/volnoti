@@ -1,0 +1,25 @@
+#!/bin/sh
+# 2014-12-14 <pille+volnoti@struction.de>
+#
+# wrapper for volnoti-show to make sure the daemon is running
+
+OUTPUTC=`volnoti-show $@ 2>&1`
+RETURNC=$?
+if [ ${RETURNC} != 0 ]; then
+        if [ "${OUTPUTC}" = "ERROR: Failed to send notification (The name uk.ac.cam.db538.volume-notification was not provided by any .service files)" ]; then
+                echo -n "volnoti daemon not running. trying to start..."
+                OUTPUTD=`volnotid 2>&1`
+                RETURND=$?
+                if [ ${RETURND} != 0 ]; then
+                        echo "failed [${RETURND}]"
+                        echo "${OUTPUTD}"
+                        exit ${RETURND}
+                else
+                        echo "ok"
+                fi
+                $0 $@
+        else
+                echo "${OUTPUTC}"
+                exit ${RETURNC}
+        fi
+fi

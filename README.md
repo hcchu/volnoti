@@ -76,9 +76,9 @@ Running the application
 Firstly, you need to running the daemon (add it to your startup 
 applications):
 
-    $ volnoti
+    $ volnotid
 
-Consult the output of `volnoti --help` if you want to see debug output
+Consult the output of `volnotid --help` if you want to see debug output
 ot don't want the application to run as a daemon. You can also change
 some parameters of the notifications (like their duration time) through 
 the parameters of the daemon.
@@ -102,7 +102,7 @@ Theming
 Some parameters of the notifications can be changed through the 
 parameters of the daemon. To learn more, run:
     
-    $ volnoti --help
+    $ volnotid --help
 
 All the images are stored in `/usr/share/pixmaps/volnoti` (depending
 on the chosen prefix during configuration phase) and it should be
@@ -132,6 +132,12 @@ To control brightness, with different icons for the varying levels:
 There is also the option to use a single icon for all values:
 
     $ volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg <value>
+
+For your convenience there's the `volnoti` script, a wrapper around volnoti-show that automatically loads the daemon on demand.
+So you can substitute `volnoti-show` with `volnoti`:
+
+    $ volnoti -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg <value>
+
 
 Credits
 -------
